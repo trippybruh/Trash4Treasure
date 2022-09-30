@@ -1,0 +1,28 @@
+{% extends 'BaseTemplate.html' %}
+
+{% block body %}
+<header class="title-box">
+    <h1 class="title"><i><a href="/" target="_self">---TRASH 4 TREASURE---</a></i></h1>
+    <p class="nav-links"><i>Version 1.0</i></p>
+</header>
+<h2>New User Registration</h2>
+<p>Please fill the all form fields below</p>
+<p>Note: passowrd must be at least 6 characters long!</p>
+<form action="newuser/" method="post">
+{% csrf_token %}
+Account username:<br>
+<input name="nickname">
+<br><br>
+Account password:<br>
+<input name="psw">
+<br><br>
+Confirm password:<br>
+<input name="pswconf">
+<br><br>
+Email:<br>
+<input name="email">
+<br><br>
+
+<input type="submit" value="Submit">
+</form>
+{% endblock %}

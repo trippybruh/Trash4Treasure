@@ -1,0 +1,42 @@
+{% extends 'BaseTemplate.html' %}
+
+{% block body %}
+<header class="title-box">
+    <h1 class="title"><i>---TRASH 4 TREASURE---</i></h1>
+    <p class="nav-links"><i>Version 1.0, *LANDING PAGE FROM WEB, CONCEPT</i></p>
+</header>
+<hr/><hr/><hr/>
+<main>
+    <h3>DEVELOPERS AREA (to be removed)</h3>
+    <p><a href="dbadmin/" target="_self">Databases Overview</a></p>
+    <p><a href="admin/" target="_self">Django admin dashboard</a></p>
+    <h2>FIND FREE PIECES OF FORNITURE IN YOUR AREA TODAY!</h2>
+    <span>
+        <p>What are you looking for?</p>
+        <form>
+            <input type="text">
+            <button>SEARCH</button>
+        </form>
+    </span>
+    <span>
+        <h2>DASHBOARD ACCESS:</h2>
+        <p><b><a href="login/" target="_self">LOG INTO YOUR ACCOUNT</a></b></p>
+        <p><b><a href="signup/" target="_self">SIGN UP FOR FREE</a></b></p>
+    </span>
+<!-- search | login or reg --> 
+</main>
+<hr/><hr/><hr/>
+<footer>
+<!--faq, about, user support, terms of use -->
+<h4>PAGE FOOTER</h4>
+<ul>
+    <li>Frequently Asked Questions</li>
+    <li>About T4T</li>
+    <li>Terms of use and privacy policy</li>
+    <li>Contact us</li>
+    <li>Follow us</li>
+    <li>Support us</li>
+</ul>
+</footer>
+
+{% endblock %}
