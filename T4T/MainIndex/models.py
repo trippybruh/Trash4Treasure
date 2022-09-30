@@ -3,7 +3,6 @@ from django.db import models
 
 
 class Users(models.Model):
-    #porcodio non fa più
     nickname = models.CharField(max_length=50, unique=True)
     psw = models.CharField(max_length=50)
     email = models.CharField(max_length=200, unique=True)
