@@ -1,27 +1,35 @@
 {% extends 'BaseTemplate.html' %}
 
 {% block body %}
-<header class="title-box">
-    <h1 class="title"><i><a href="/" target="_self">---TRASH 4 TREASURE---</a></i></h1>
-    <p class="nav-links"><i>Version 1.0</i></p>
+<header>
+    {% include 'BaseHeader.html'%}
 </header>
-<h2>USER DATABASE</h2>
-<div>
-<table border="1">
-    {% for x in Users %}
-    <tr>
-        <td>{{ x.id }}</td>
-        <td>{{ x.nickname }}</td>
-        <td>{{ x.psw }}</td>
-        <td>{{ x.email }}</td>    
-        <td>{{ x.created }}</td>
-        <td><a href="delete/{{ x.id }}">DELETE</a></td>
-    </tr>
-    {% endfor %}
-</table>
-</div>
-<h2>CATALOGUE DATABASE</h2>
-<div>
+<main>
+    <h2>USER DATABASE</h2>
+    <div>
+    <table border="1">
+        {% for x in Users reversed %}
+        <tr>
+            <td>ID</td>
+            <td>{{ x.id }}</td>
+            <td>Username</td>
+            <td>{{ x.nickname }}</td>
+            <td>Passowrd</td>
+            <td>{{ x.psw }}</td>
+            <td>Email</td>
+            <td>{{ x.email }}</td>  
+            <td>Created</td>  
+            <td>{{ x.created }}</td>
+            <td><a href="delete/{{ x.id }}">DELETE</a></td>
+        </tr>
+        {% empty %}
+        <p>No Users in database!</p>
+        {% endfor %}
+    </table>
+    </div>
+    <h2>CATALOGUE DATABASE</h2>
+    <div>
 
-</div>
+    </div>
+</main>
 {% endblock %}
