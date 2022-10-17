@@ -1,0 +1,75 @@
+{% extends 'BaseTemplate.html' %}
+
+{% block body %}
+<header>
+    {% include 'BaseHeader.html'%}
+</header>
+<main>
+    <h1>DATABASE OVERVIEW</h1>
+    <h2>USERS</h2>
+    <div>
+        <table border="1">
+            <tr>
+                <td>ID</td>
+                <td>USERNAME</td>
+                <td>PASSWORD</td>
+                <td>EMAIL</td>
+                <td>CREATED ON</td>
+                <td>DELETE USER</td>
+            </tr>
+            {% for x in Users reversed %}
+            <tr>
+                <td>{{ x.id }}</td>              
+                <td>{{ x.nickname }}</td>               
+                <td>{{ x.psw }}</td>
+                <td>{{ x.email }}</td>    
+                <td>{{ x.created }}</td>
+                <td><a href="deleteUser/{{ x.id }}">DELETE</a></td>
+            </tr>
+            {% empty %}
+            <p>No users in database!</p>
+            {% endfor %}
+        </table>
+    </div>
+    <h2>CATALOGUE</h2>
+    <div>
+        <table border="1">
+            <tr>
+                <td>ID</td>
+                <td>TITLE</td>
+                <td>DESCRIPTION</td>
+                <td>ITEM TAGS</td>
+                <td>PICKUP LOCATION</td>
+                <td>BELONGS TO 'USER'</td>
+                <td>ADS PUBLISHED</td>
+                <td>STILL AVAILABLE</td>
+                <td>ADS REMOVED</td>
+                <td>PICKED UP BY 'USER'</td>
+                <td>DELETE ITEM</td>
+            </tr>
+            {% for x in Stuff reversed %}
+            <tr>
+                <td>{{ x.id }}</td>              
+                <td>{{ x.title }}</td>
+                <td>{{ x.description }}</td>
+                <td>{{ x.item_tags }} </td>
+                <td>{{ x.geo_position }}</td>   
+                <td>{{ x.publisher_nn }}</td>
+                <td>{{ x.ads_published }}</td>    
+                <td>{{ x.available }}</td>
+                {% if x.available == False %}
+                <td>{{ x.ads_Removed }}</td>
+                <td>{{ x.next_owner }}</td>
+                {% else %}
+                <td> /// </td>
+                <td> /// </td>
+                <td><a href="deletePiece/{{ x.id }}">DELETE</a></td>
+                {% endif %}
+            </tr>
+            {% empty %}
+            <p>No items in database!</p>
+            {% endfor %}
+        </table>
+    </div>
+</main>
+{% endblock %}
