@@ -5,6 +5,36 @@
     {% include 'BaseHeader.html'%}
 </header>
 <main>
-    <p>DAHSBOARD FOR {{ user.nickname }}</p>
+    <div>
+        <h2>Personal Area: Welcome {{ user.nickname }}!</h2>
+        <h3>Are you looking for something in particular?<h3>
+        <form method="post">
+            <input type="text">
+            <button>SEARCH</button>
+        </form>
+    </div>
+    <div>    
+        <h3>Looking to dispose some forniture?</h3>
+        <form name="addpiece" action="/signup/user/dash={{user.id}}/add" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <br>
+            <input type="submit" value="PUBLISH ADVERTISE">
+        </form>
+    </div>
+    <div>
+        {% if ec >= 0 %}
+        <p>{{ msg }}</p>
+        {% endif %}
+    </div>    
+    <div class="navbar">
+        <a href="" target="_self">WatchLists</a>
+        <a href="" target="_self">Chats</a>
+        <a href="" target="_self">Account history<a>
+        <a href="" target="_self">Account Settings</a>
+    </div>
 </main>
+<footer>
+    {% include 'BaseFooter.html'%}
+</footer>
 {% endblock %}

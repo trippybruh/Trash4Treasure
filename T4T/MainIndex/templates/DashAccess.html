@@ -2,47 +2,54 @@
 
 {% block body %}
 <header>
-    {% include 'BaseHeader.html'%}
+    {% include 'BaseHeader.html' %}
 </header>
 <main>
+    <div class="logsignerror">
     {% if ec == 0 %}
     <p>{{ msg }}</p>
-    {% endif %}
-    <h2>Log in your existing account</h2>
-    <form name="login" action="/signup/user/" method="post">
-        {% csrf_token %}
-        Username/Email: <br>
-        <input required name="nickname"  placeholder="Enter your username or email" type="text">
-        <br><br>
-        Password: <br>
-        <input required name="password" placeholder="Enter your password" type="password">
-        <br><br>
-        <input type="submit" value="LOGIN">
-    </form>
-    {% if ec > 3 %}
+    {% elif ec > 3 %}
     <p>An error occured during log in: {{ msg }}</p>
-    {% endif %}
-    <h2>New account registration</h2>
-    <p>Please fill the all form fields below</p>
-    <p>Note: passowrd must be at least 6 characters long!</p>
-    <form name="registration" action="/signup/newuser/" method="post">
-        {% csrf_token %}
-        Account username:<br>
-        <input required name="nickname" placeholder="Enter a username" type="text">
-        <br><br>
-        Account password:<br>
-        <input required name="psw" placeholder="Enter passowrd" type="password">
-        <br><br>
-        Confirm password:<br>
-        <input required name="pswconf" placeholder="Repeat passowrd" type="password">
-        <br><br>
-        Email:<br>
-        <input required name="email" placeholder="Enter your email" type="text">
-        <br><br>
-        <input type="submit" value="CREATE">
-    </form>
-    {% if ec <= 3 and ec > 0 %}
+    {% elif ec <= 3 and ec > 0 %}
     <p>An error occurred: {{ msg }}</p>
     {% endif %}
+    </div>
+    <div class="logindiv">
+        <h3>Log in your existing account</h3>
+        <form name="login" action="/signup/user/" method="post">
+            {% csrf_token %}
+            Username/Email: <br>
+            <input required name="nickname"  placeholder="username/email" type="text">
+            <br><br>
+            Password: <br>
+            <input required name="password" placeholder="password" type="password">
+            <br><br>
+            <input type="submit" value="LOGIN">
+        </form>
+    </div>
+    <div class="newaccdiv">
+        <h3>New account registration</h3>
+        <p>Note: passowrd must be at least 6 characters long!</p>
+        <form name="registration" action="/signup/newuser/" method="post">
+            {% csrf_token %}
+            Account username:<br>
+            <input required name="nickname" placeholder="Enter a username" type="text">
+            <br><br>
+            Account password:<br>
+            <input required name="psw" placeholder="Enter a passowrd" type="password">
+            <br><br>
+            Confirm password:<br>
+            <input required name="pswconf" placeholder="Repeat the passowrd" type="password">
+            <br><br>
+            Email:<br>
+            <input required name="email" placeholder="Enter your email" type="text">
+            <br><br>
+            <input type="submit" value="CREATE ACCOUNT">
+        </form>
+    </div>
 </main>
+<footer>
+<!--faq, about, user support, terms of use -->
+    {% include 'BaseFooter.html'%}
+</footer>
 {% endblock %}

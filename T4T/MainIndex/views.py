@@ -1,13 +1,15 @@
 
-from sqlite3 import IntegrityError
 from django.template import loader
 from django.urls import reverse
 from django.http import *
-from .models import Users, Catalogue
 from django.views.decorators.csrf import csrf_exempt
 
+from .models import Users, Catalogue
+from .forms import UsersForm, CatalogueForm
+
 #home
-def BaseIndex(request):
+def baseIndex(request):
+    print(request.user)
     return HttpResponse(loader.get_template('MainIndex.html').render())
 
 def extra(**kwargs):
@@ -57,7 +59,7 @@ def dash_login(request):
                     else: 
                         break
             return HttpResponseRedirect('5')  
-        except IntegrityError:  
+        except Exception:  
             return HttpResponseRedirect('4')
 
 #da fixare
@@ -85,35 +87,88 @@ def registration(request):
                     return HttpResponseRedirect('0')
                 else: return HttpResponseRedirect('1') 
             else: return HttpResponseRedirect('2')
-        except IntegrityError:
+        except Exception:
             return HttpResponseRedirect('3')
 
 #user dash
-def account_organizer(request, id):
+def account_organizer(request, **kwargs):
 
-    #get personal lists
-    user = Users.objects.get(id=id)
+    ec = kwargs.get('ec')
+    msg = None
+
+    if ec != None:
+        if ec == 0:
+            msg = "Successfully added!"
+        elif ec == 1:
+            msg = "An error occurred!"    
+    else: ec = -1
+
     context = {
-        'user' : user
+        'user' : Users.objects.get(id=kwargs.get('id')),
+        'ec' : ec,
+        'msg' : msg
     }
+
     return HttpResponse(loader.get_template('AccountDash.html').render(context, request))
+
+def account_org_buffed(request, **kwargs):
+
+    form = CatalogueForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+    context = {
+        'form' : form,
+        'user' : Users.objects.get(id=kwargs.get('id'))
+    }
+
+    return HttpResponse(loader.get_template('AccountDash.html').render(context, request))
+
+@csrf_exempt
+def addPiece(request, id):
+
+    if request.method == 'POST':
+        try:
+            title = request.POST.get('title')
+            description = request.POST.get('description')
+            publisher = Users.objects.get(id=id)
+            new_piece = Catalogue(title = title, description = description, publisher = publisher, publisher_nn = publisher.nickname)
+            new_piece.save()
+            return HttpResponseRedirect('0')
+        except Exception as e:
+            print(e)
+            return HttpResponseRedirect('1')
 
 #db control
 def dbs_show(request):
 
     Allusers = Users.objects.all().values()
+    Allstuff= Catalogue.objects.all().values()
+
     context = {
         'Users': Allusers,
+        'Stuff': Allstuff,
     }
+
     return HttpResponse(loader.get_template('DBcheck.html').render(context, request)) 
 
 def deleteUser(request, id):
 
     user = Users.objects.get(id=id)
     user.delete()
-    return HttpResponseRedirect(reverse(dbs_show))   
+    return HttpResponseRedirect(reverse(dbs_show))
+
+def deletePiece(request, id):
+
+    piece = Catalogue.objects.get(id=id)
+    piece.delete()
+    return HttpResponseRedirect(reverse(dbs_show)) 
 
 #catalogue
+def catOverview(request):
+    Allstuf = Catalogue.objects.all().values()
+    return  HttpResponse(loader.get_template('BaseCatalogue.html').render())
+
 def QueryCatalogue(request):
     pass
 
