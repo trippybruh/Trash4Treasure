@@ -5,7 +5,7 @@ Free forniture user friendly exchange platform, optimized for web and mobile dev
 It takes time and effort to dispose of an old couch or wardrobe trough conventional ways, and at the same time there are people looking exactly for what you are trying to waste, wouldn't it be easier if the two of you can share a common place where to find each other and resolve your mutual problem?
 
 # Trash4Treasure Developers Guide #
-The app is being developed as a Django project, which is a Python library, 
+The app is being developed as a Django project, which is a Python framework optimized to build and deploy any web service.
 
 therefore you need it to run this code: https://www.python.org/downloads/
 
