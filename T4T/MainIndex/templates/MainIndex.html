@@ -1,0 +1,27 @@
+{% extends 'BaseTemplate.html' %}
+
+{% block body %}
+<header>
+    {% include 'BaseHeader.html'%}
+</header>
+<main style="height: 350px">
+    <p><i>Version 1.0.0, *LANDING PAGE FROM WEB, CONCEPT</i></p>
+    <div class="searchdiv">
+        <h2>FIND FREE STUFF IN YOUR AREA TODAY!</h2>
+        <p>Get in touch with the owner, go pick it up and give a second chance to anything you need!</p>
+        <form name="catsearch" action="/catalogue/search/" method="get">
+            <input required type="text" name="search" placeholder="What are you looking for?">
+            <input type="submit" value="SEARCH">
+        </form>
+    </div>
+    <div class="accountdiv">
+        <h2>DO YOU MIND THROWING AWAY SOMETHING YOU NO LONGER USE?</h2>
+        <p>Someone somewhere need it,</p>
+        <p><b><a href="signup/" target="_self">JOIN THE T4T COMMUNITY</a></b></p>
+    </div>
+</main>
+<footer>
+    {% include 'BaseFooter.html'%}
+</footer>
+
+{% endblock %}

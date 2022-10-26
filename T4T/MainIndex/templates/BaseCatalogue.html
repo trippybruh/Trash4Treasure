@@ -1,0 +1,35 @@
+{% extends 'BaseTemplate.html' %}
+
+{% block body %}
+<header>
+    {% include 'BaseHeader.html' %}  
+</header>
+<main style="height: fit-content">
+    <div>
+        <div>
+            <h2>T4T CATALOGUE</h2>
+            <form name="catsearch" action="/catalogue/search/" method="get">
+                <input required type="text" name="search" placeholder="Search something...">
+                <input type="submit" value="SHOW RESULTS">
+                <br>
+            </form>
+        </div>
+        <hr>
+        <div>
+            <p>{{ querytype }}</p>
+            {% for x in items reversed %}
+                <hr>
+                <h4>{{ x.title }}</h4>
+                <p>description: {{ x.description }}</p>
+                <p>In: <a href="https://www.google.it/maps/search/{{x.geo_position}}/" target="blank">{{ x.geo_position}}</a></p>
+                <p>Belongs to: {{ x.publisher_nn }}</p>
+            {% empty %}
+            <p>We are sorry, currently there isn't any item matching your filter/s!</p>
+            {% endfor %}
+        </div>    
+    </div>
+</main>
+<footer>
+    {% include 'BaseFooter.html' %}
+</footer>   
+{% endblock %}
