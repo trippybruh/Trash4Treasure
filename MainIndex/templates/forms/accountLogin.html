@@ -1,0 +1,10 @@
+<form name="login" action="/signup/user/" method="post">
+    {% csrf_token %}
+    <label for="nickname">Username/Email:</label>
+    <input autofocus required name="nickname"  placeholder="username/email" type="text">
+    <br><br>
+    <label for="psw">Password:</label>
+    <input required name="psw" placeholder="password" type="password">
+    <br><br>
+    <input type="submit" value="LOGIN">
+</form>

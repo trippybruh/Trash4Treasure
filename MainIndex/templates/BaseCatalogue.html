@@ -1,0 +1,44 @@
+{% extends 'BaseTemplate.html' %}
+
+{% block body %}
+<header>
+    {% include 'BaseHeader.html' %}  
+</header>
+<main style="height: fit-content">
+    <div>
+        <div>
+            <h2>T4T CATALOGUE</h2>
+            <p>By default this search is performed among ads <b style="color: green">titles</b>, but you can specify any filters if you wish</p>
+            {% include 'forms/catalogueSearch.html '%}
+        </div>
+        <hr>
+        <div>
+            {% if search != None and Nitems > 0 %}
+                <p>Showing {{ Nitems }} results for: "{{ search }}" sorted from the {{ sort_type }}<br>Search type: {{ search_type }}</p><hr>
+            {% elif search == None %}
+                <p>There are currently {{ Nitems }} items listed!</p><hr>
+            {% endif %}
+            <p>Watchlist updated: {{ watchlist_updated }}</p>
+            {% for x in items reversed %}
+                <h4 style="color: green">{{ x.title | upper }}<b style="color: black;"> ({{ x.ads_published | date }})</b></h4>
+                <p><b>Location:</b> <a href="https://www.google.it/maps/search/{{x.geo_position}}/" target="blank">{{ x.geo_position}}</a> &#8594; <b> Publisher:</b> {{ x.publisher_nn }}</p>
+                <p>{{ x.description }}</p>
+                {% if auth == True and x in watchlist_items %}
+                    <p><i>Already in your watchlist</i></p>
+                    {% include 'forms/watchlistRemoving.html' %}
+                {% elif auth == True and watchlist_items == None %}
+                    {% include 'forms/watchlistAdding.html' %}
+                {% elif auth == True and x not in watchlist_items %}
+                    {% include 'forms/watchlistAdding.html' %}
+                {% endif %}
+                <hr>
+            {% empty %}
+            <p>Sorry, currently there isn't any listed item matching your search ("{{ search }}") and/or filters<br>Check for any spell errors, reset filters and try again!</p>
+            {% endfor %}
+        </div>    
+    </div>
+</main>
+<footer>
+    {% include 'BaseFooter.html' %}
+</footer>   
+{% endblock %}

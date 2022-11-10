@@ -1,0 +1,7 @@
+<form name="removewatchlist" action="/catalogue/removewatchlist/" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="itemID" value="{{x.id}}">
+    <input type="hidden" name="user_nn" value="{{req_user}}">
+    <input type="hidden" name="req_origin" value="catalogue">
+    <input type="submit" value="REMOVE FROM WATCHLIST">
+</form>

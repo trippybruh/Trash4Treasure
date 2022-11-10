@@ -1,0 +1,24 @@
+<form name="addpiece" action="/signup/user/dash/add" method="post">
+    {% csrf_token %}
+    <label for="title">ADD A TITLE:</label>
+    <input required type="text" name="title" placeholder="What are you getting rid of?">
+    <br><br>
+    <label for="desc">ADD A DESCRIPTION:</label>
+    <input required type="text" name="description" id="desc" placeholder="Brief descrption of its status" size="120">
+    <br><br>
+    <label for="img">UPLOAD SOME IMAGES:</label>
+    <input type="file" id="image" name="img" multiple>
+    <br><br>
+    <label required for="items_number">SPECIFY NUMBER OF INDIVIDUAL OBJECTS:</label> 
+    <input type="number" name="items_number" id="items_number" placeholder="How many are them?" min="1" max="100">
+    <br><br>
+    <hr>
+    <p>SPECIFY THE ITEM/S EXACT LOCATION IN {{ user.country | upper }}:</p>
+    <label for="region">REGION</label>
+    <input required type="text" name="region" id="region">
+    <br><br>
+    <label for="city">CITY</label>
+    <input required type="text" name="city" id="city">
+    <br><br>
+    <input type="submit" value="PUBLISH ADVERTISE">      
+</form>

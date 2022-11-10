@@ -1,0 +1,139 @@
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+html{
+    background-color: rgb(237, 251, 180);
+    opacity: 0.9;
+}
+
+body {
+    margin: 1;
+    padding-left: 400px;
+    padding-right: 400px;
+    text-align: justify;
+    min-width: 100%;
+}
+
+main {
+    background-color: rgb(195, 195, 195);
+    padding: 10px;
+}
+
+footer {
+    height: fit-content;
+    padding: 10px;
+    background-color: rgb(44, 191, 25);
+}
+
+.logo {
+    position: absolute;
+    left: 450px;
+    height: 80px;
+    width: 80px;
+    max-width: 100%;
+} 
+
+.mainlogo {
+    position: absolute;
+    left: 845px;
+    height: 277px;
+    width: 233px;
+    max-width: 100%;
+}
+
+.title {
+
+    overflow: hidden;
+    background-color: rgba(183, 255, 1, 0.927);
+
+}
+
+.title h1 {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.navbar {
+    overflow: hidden;
+    background-color: rgb(44, 191, 25);
+}
+  
+.navbar a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+  
+.navbar a:hover {
+    background-color: gold;
+}
+
+.searchdiv {
+    position: absolute;
+    left: 425px;
+    border: 10px solid  rgb(44, 191, 25);
+    padding: 15px;
+    margin: 15px;
+    background-color: rgba(183, 255, 1, 0.927);
+    height: fit-content;
+    width: 400px;
+    max-width: 100%;
+    text-align: center;
+}
+
+.accountdiv {
+    position: absolute;
+    right: 425px;
+    border: 10px solid  rgb(44, 191, 25);
+    padding: 15px;
+    margin: 15px;
+    background-color: rgba(183, 255, 1, 0.927);
+    height: fit-content;
+    width: 400px;
+    max-width: 100%;
+    text-align: center;
+}
+
+.newaccdiv {
+    position: absolute;
+    right: 425px;
+    border: 10px solid gold;
+    padding: 15px;
+    margin: 15px;
+    background-color: lightgreen;
+    height: fit-content;
+    width: 400px;
+    text-align: center;
+}
+
+.logindiv {
+    position: absolute;
+    left: 425px;
+    border: 10px solid rgb(207, 21, 253);
+    padding: 15px;
+    margin: 15px;
+    background-color: orange;
+    height: fit-content;
+    width: 400px;
+    text-align: center;
+}
+
+.logsignerror {
+    position: absolute;
+    left: 425px;
+    top: 23rem;
+    border: 10px  solid gold;
+    padding: 15px;
+    margin: 15px;
+    background-color: greenyellow;
+    height: fit-content;
+    width: 400px;
+    color: rgb(215, 0, 0);
+    font-size: 18px;
+    text-align: center;
+}
