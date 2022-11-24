@@ -1,6 +1,0 @@
-<form name="addwatchlist" action="/catalogue/addwatchlist/" method="post">
-    {% csrf_token %}
-    <input type="hidden" name="itemID" value="{{x.id}}">
-    <input type="hidden" name="user_nn" value="{{req_user}}">
-    <input type="submit" value="ADD TO WATCHLIST">
-</form>
