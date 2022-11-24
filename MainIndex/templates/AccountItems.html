@@ -1,0 +1,60 @@
+{% extends 'BaseTemplate.html' %}
+
+{% block body %}
+<header>
+    {% include 'BaseHeader.html'%}
+</header>
+<main>
+    <h2>In this section are showed all your published advertisements and your personal watchlist</h2>
+    <hr>
+    {% for x in items reversed %}
+        {% if forloop.first %}
+        <h3>AVAILABLE ITEMS FOR THE COMMUNITY</h3>
+        <p>Currently you have {{ items | length }} advertisements listed in the catalogue</p>
+        {% endif %}
+        <div class="flex-item-container">
+            <div class="item-info">
+                <h4 style="color: green">{{ x.title | upper }}<b style="color: black;"> ({{ x.ads_published | date }} - {{ x.ads_published | time }})</b></h4>
+                <p><b>Location:</b> <a href="https://www.google.it/maps/search/{{x.geo_position}}/" target="blank">{{ x.geo_position}}</a></p>
+                <p>{{ x.description }}</p>
+                <p>Currently watched by <b>{{ x.popularity }}</b> user/s</p>
+                {% include 'forms/itemEditDelete.html' %}
+            </div>
+            <div class="item-img">
+                {% load static %}
+                <!-- {{ x.get_img }} al posto di src in fase produzione -->
+                <img class="item" src="{% static 'logos/default-placeholder.png' %}" alt="IMAGE"><br>Photos slideshow<br>
+            </div>
+        </div>
+    {% empty %}
+        <p>There is no item listed in the catalogue that belongs to you, if you think there's an error navigate to the account history section in user menu</p>
+    {% endfor %}
+    <hr>
+    {% for x in watchlist_items reversed %}
+        {% if forloop.first %}
+        <h3>YOUR WATCHLIST ({{ watchlist_items | length }}/5)</h3>
+        {% endif %}
+        <div class="flex-item-container">
+            <div class="item-info">
+                <h4 style="color: green">{{ x.title | upper }}<b style="color: black;"> ({{ x.ads_published | date }} - {{ x.ads_published | time }})</b></h4>
+                <p><b>Location:</b> <a href="https://www.google.it/maps/search/{{x.geo_position}}/" target="blank">{{ x.geo_position}}</a> &#8594; <b> Publisher:</b> {{ x.publisher_nn }}</p>
+                <p>{{ x.description }}</p>
+                <p>Currently watched by <b>{{ x.popularity }}</b> user/s</p>
+                {% include 'forms/watchlistRemoving.html' %}
+            </div>
+            <div class="item-img">
+                {% load static %}
+                <!-- {{ x.get_img }} al posto di src in fase produzione -->
+                <img class="item" src="{% static 'logos/default-placeholder.png' %}" alt="IMAGE"><br>Photos slideshow<br>
+                <button onclick="javascirpt:alert('Chat window opened!')">Get in touch with the owner</button>
+            </div>
+        </div>
+    {% empty %}
+    <p>Your watchlist is empty!</p>
+    {% endfor %}
+</main>
+<footer>
+    {% include 'BaseFooter.html'%}
+</footer>
+
+{% endblock %}

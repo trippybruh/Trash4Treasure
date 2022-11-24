@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="TRIPPYBRUH">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DATABASE /// JS</title> 
+    </head>
+    <body>
+        <header>
+            <h1><b><a href="/">BACK TO SITE</a></b></h1>
+        </header>
+        <main>
+            <h1>DATABASE OVERVIEW AND JS TESTING</h1>
+            <h2>MY MODEL USERS</h2>
+            <div>
+                <table border="1">
+                    <tr>
+                        <td>ID</td>
+                        <td>USERNAME</td>
+                        <td>REAL PASSWORD</td>
+                        <td>EMAIL</td>
+                        <td>COUNTRY</td>
+                        <td>DELETE USER</td>
+                    </tr>
+                    {% for x in MyUsers reversed %}
+                    <tr>
+                        <td>{{ x.id }}</td>
+                        <td>{{ x.nickname }}</td>               
+                        <td>{{ x.psw }}</td>
+                        <td>{{ x.email }}</td>    
+                        <td>{{ x.country }}</td>
+                        <td><a href="deleteUser/{{ x.id }}">DELETE</a></td>
+                    </tr>
+                    {% empty %}
+                    <p>No users in database!</p>
+                    {% endfor %}
+                </table>
+            </div>
+            <h2>DJANGO MODEL USERS</h2>
+            <p>DELETE ALL DB DATA: <a href="flushAllData">DO IT!</a></p>
+            <div>
+                <table border="1">
+                    <tr>
+                        <td>ID</td>
+                        <td>USERNAME</td>
+                        <td>CREATED</td>
+                        <td>LAST LOGIN</td>
+                        <td>DELETE USER</td>
+                    </tr>
+                    {% for x in DjangoUsers reversed %}
+                    <tr>
+                        <td>{{ x.id }}</td>              
+                        <td>{{ x.username }}</td>                   
+                        <td>{{ x.date_joined }}</td>
+                        <td>{{ x.last_login }}</td>
+                        <td><a href="deleteDjangoUser/{{ x.id }}">DELETE</a></td>
+                    </tr>
+                    {% empty %}
+                    <p>No users in database!</p>
+                    {% endfor %}
+                </table>
+            </div>
+            <h2>USERS WATCHLISTS</h2>
+            <div>
+                <table border="1">
+                    <tr>
+                        <td>ID</td>
+                        <td>OWNER USERNAME</td>
+                        <td>NUMBER OF ITEMS</td>
+                        <td>FIRST ITEM ID</td>
+                        <td>DELETE WATCHLIST</td>
+                    </tr>
+                    {% for x in watchlists reversed %}
+                    <tr>
+                        <td>{{ x.id }}</td>              
+                        <td>{{ x.owner_nn}}</td>                   
+                        <td>{{ x.watchlist_items }}</td>
+                        {% if x.item1 != None %}
+                        <td>{{ x.item1.id }}</td>
+                        {% else %}
+                        <td>///</td>
+                        {% endif %}
+                        <td><a href="deleteWatchlist/{{ x.id }}">DELETE</a></td>
+                    </tr>
+                    {% empty %}
+                    <p>No watchlists in database!</p>
+                    {% endfor %}
+                </table>
+            </div>
+            <h2>CATALOGUE</h2>
+            <p>DELETE ALL ITEMS IN CATALOGUE: <a href="flushAllItems">DO IT!</a></p>
+            <div>
+                <table border="1">
+                    <tr>
+                        <td>ID</td>
+                        <td>TITLE</td>
+                        <td>DESCRIPTION</td>
+                        <td>ITEM TAGS</td>
+                        <td>PICKUP LOCATION</td>
+                        <td>BELONGS TO 'USER'</td>
+                        <td>IMAGE</td>
+                        <td>ADS PUBLISHED</td>
+                        <td>STILL AVAILABLE</td>
+                        <td>POPULARITY</td>
+                        <td>ADS REMOVED</td>
+                        <td>PICKED UP BY 'USER'</td>
+                        <td>DELETE ITEM</td>
+                    </tr>
+                    {% for x in Stuff reversed %}
+                    <tr>
+                        <td>{{ x.id }}</td>              
+                        <td>{{ x.title }}</td>
+                        <td>{{ x.description }}</td>
+                        <td>{{ x.item_tags }} </td>
+                        <td>{{ x.geo_position }}</td>   
+                        <td>{{ x.publisher_nn }}</td>
+                        <td>{{ x.img }}</td>
+                        <td>{{ x.ads_published }}</td>    
+                        <td>{{ x.available }}</td>
+                        <td>{{ x.popularity }}</td>
+                        {% if x.available == False %}
+                        <td>{{ x.ads_Removed }}</td>
+                        <td>{{ x.next_owner }}</td>
+                        <td><a href="deletePiece/{{ x.id }}">DELETE</a></td>
+                        {% else %}
+                        <td> /// </td>
+                        <td> /// </td>
+                        <td><a href="deletePiece/{{ x.id }}">DELETE</a></td>
+                        {% endif %}
+                    </tr>
+                    {% empty %}
+                    <p>No items in database!</p>
+                    {% endfor %}
+                </table>
+            </div>
+            <hr>
+            <h2>JAVASCRIPTS TEST ZONE</h2>
+            <script src={% static 'js/getGeoPos.js' %}></script>
+            <script src={% static 'js/testJavascroto.js' %}></script>
+            <div>
+                <button type="button" onclick="getLocation()">YOUR POSITION</button>
+                <p id="pos">No position</p><hr>
+                <button type="button" onclick="changeHtmlpar()">Change</button>
+                <p id="test">TEST</p><hr>
+            </div>
+        </main>
+    </body>    
+</html>

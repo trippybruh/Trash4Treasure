@@ -1,0 +1,17 @@
+<div class="edit-item">
+    <form name="itemsaction" method="post" action="/signup/user/dash/items">
+        {% csrf_token %}
+        <input type="hidden" name="item_id" value={{ x.id }}>
+        <input type="hidden" name="user_action" value="edit">
+        <input type="submit" value="EDIT ITEM">
+    </form>
+</div>
+<br>
+<div class="delete-item">
+    <form name="itemsaction" method="post" action="/signup/user/dash/items">
+        {% csrf_token %}
+        <input type="hidden" name="item_id" value={{ x.id }}>
+        <input type="hidden" name="user_action" value="delete">
+        <input type="submit" value="DELETE ITEM">
+    </form>
+</div>

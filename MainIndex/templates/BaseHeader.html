@@ -1,0 +1,28 @@
+{% load static %}
+<div class="title">
+  <div>
+    <img class="logo" src="{% static 'logos/headerLogo.jpg' %}">
+  </div>
+  <h1><i>TRASH FOR TREASURE</i></h1>
+</div>
+  <ul class="navbar">
+    <li><b><a href="/" class="navbar-section"><i class="fa fa-fw fa-home"></i> Home</a></b></li>
+    <li><b><a href="/catalogue" class="navbar-section"><i class="fa fa-fw fa-search"></i> Explore Catalogue</a></b></li>
+    <li><b><a href="/aboutT4T" class="navbar-section"><i class="fa fa-fw fa-info"></i>About T4T</a></b></li>
+    {% if auth == False or auth == None %}
+    <li><b><a href="/signup" class="navbar-section-split"><i class="fa fa-fw fa-user"></i> Login/Create account</a></b></li>
+    {% else %}
+    <li class="dropdown">
+      <a style="cursor: pointer;" class="dropbtn"><i class="fa fa-fw fa-user"></i><b>My Account <i class="fa fa-caret-down"></i></b></a>
+      <div class="dropdown-content">
+        <a href="/signup"><i class="fa fa-fw fa-user"></i><b>User Dashboard</b></a>
+        <a href="/signup/user/dash/items"><b>Items</b></a>
+        <a href="" target="_self"><b>Chats</b></a>
+        <a href="" target="_self"><b>Settings</b></a>
+        <a href="" target="_self"><b>User History</b></a>
+        <a href="/logout"><i class="fa fa-fw fa-user"></i><b> Logout &#8594;</b></a>
+      </div>
+    </li> 
+    {% endif %}
+  </ul>
+</div>

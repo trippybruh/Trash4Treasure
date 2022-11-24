@@ -1,0 +1,29 @@
+{% extends 'BaseTemplate.html' %}
+
+{% block body %}
+<header>
+    {% include 'BaseHeader.html'%}
+</header>
+<main>
+    <div class="flex-container">
+        <div>
+            <h2>Personal Area: Welcome {{ user.nickname }}!</h2>
+            <h3>Are you looking for something in particular?<h3>
+            <p>A SEARCH FORM WAS HERE</p>
+        </div>
+        <div>    
+            <h3>Looking to dispose something?</h3>
+            <p>DEVELOPER BUTTON: <a href="/signup/user/dash/addrandom" target="_self">ADD A RANDOM ITEM</a></p>
+            {% include 'forms/catalogueAdding.html'%}
+        </div>
+        <div>
+            {% if ec >= 0 %}
+            <p>{{ msg }}</p>
+            {% endif %}
+        </div>
+    </div>    
+</main>
+<footer>
+    {% include 'BaseFooter.html'%}
+</footer>
+{% endblock %}
